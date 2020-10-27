@@ -1,4 +1,4 @@
-package com.GroupA.Week4LabA.Model;
+package com.GroupA.Week4LabA.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

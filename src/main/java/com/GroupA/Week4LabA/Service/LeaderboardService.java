@@ -1,4 +1,6 @@
-package com.GroupA.Week4LabA.Service;
+package com.GroupA.Week4LabA.service;
+
+import com.GroupA.Week4LabA.model.Match;
 
 import java.util.Collection;
 
