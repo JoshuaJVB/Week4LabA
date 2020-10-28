@@ -1,6 +1,6 @@
-package com.GroupA.Week4LabA.Service;
+package com.groupa.week4laba.service;
 
-import com.GroupA.Week4LabA.Model.Leaderboard;
+import com.groupa.week4laba.model.Leaderboard;
 
 public interface LeaderboardService {
 

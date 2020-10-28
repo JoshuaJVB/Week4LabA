@@ -1,7 +1,7 @@
-package com.GroupA.Week4LabA.Repo;
+package com.groupa.week4laba.repo;
 
 
-import com.GroupA.Week4LabA.Model.Leaderboard;
+import com.groupa.week4laba.model.Leaderboard;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

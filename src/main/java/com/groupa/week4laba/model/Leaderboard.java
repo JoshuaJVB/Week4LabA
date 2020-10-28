@@ -1,4 +1,4 @@
-package com.GroupA.Week4LabA.Model;
+package com.groupa.week4laba.model;
 
 import javax.persistence.*;
 import java.util.List;

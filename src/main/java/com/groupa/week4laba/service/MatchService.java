@@ -1,6 +1,6 @@
-package com.GroupA.Week4LabA.Service;
+package com.groupa.week4laba.service;
 
-import com.GroupA.Week4LabA.Model.Match;
+import com.groupa.week4laba.model.Match;
 
 public interface MatchService {
     Match create(Match match);
