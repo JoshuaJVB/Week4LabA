@@ -43,6 +43,7 @@ public class Week4LabAApplication {
 			leaderboardRepo.save(leaderboard);
 			
 			List<Match> matches = new ArrayList<>();
+			match.setLeaderboard(leaderboard);
 			matches.add(match);
 			match = new Match(1000L, user, leaderboard);
 			matchRepo.save(match);
