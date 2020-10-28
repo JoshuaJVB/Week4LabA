@@ -1,6 +1,6 @@
-package com.GroupA.Week4LabA.repo;
+package com.GroupA.Week4LabA.Repo;
 
-import com.GroupA.Week4LabA.model.User;
+import com.GroupA.Week4LabA.Model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
-package com.GroupA.Week4LabA.service;
+package com.GroupA.Week4LabA.Service;
 
-import com.GroupA.Week4LabA.model.Match;
-import com.GroupA.Week4LabA.repo.MatchRepo;
+import com.GroupA.Week4LabA.Model.Match;
+import com.GroupA.Week4LabA.Repo.MatchRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

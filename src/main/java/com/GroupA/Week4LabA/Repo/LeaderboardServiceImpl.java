@@ -1,7 +1,7 @@
-package com.GroupA.Week4LabA.repo;
+package com.GroupA.Week4LabA.Repo;
 
-import com.GroupA.Week4LabA.service.LeaderboardService;
-import com.GroupA.Week4LabA.model.Match;
+import com.GroupA.Week4LabA.Service.LeaderboardService;
+import com.GroupA.Week4LabA.Model.Match;
 import org.springframework.stereotype.Service;
 
 @Service

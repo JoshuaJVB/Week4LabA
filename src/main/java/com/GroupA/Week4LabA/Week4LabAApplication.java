@@ -1,9 +1,9 @@
 package com.GroupA.Week4LabA;
 
-import com.GroupA.Week4LabA.model.Match;
-import com.GroupA.Week4LabA.model.User;
-import com.GroupA.Week4LabA.repo.MatchRepo;
-import com.GroupA.Week4LabA.repo.UserRepo;
+import com.GroupA.Week4LabA.Model.Match;
+import com.GroupA.Week4LabA.Model.User;
+import com.GroupA.Week4LabA.Repo.MatchRepo;
+import com.GroupA.Week4LabA.Repo.UserRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

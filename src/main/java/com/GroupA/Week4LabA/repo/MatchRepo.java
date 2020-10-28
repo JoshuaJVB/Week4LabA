@@ -1,6 +1,6 @@
-package com.GroupA.Week4LabA.repo;
+package com.GroupA.Week4LabA.Repo;
 
-import com.GroupA.Week4LabA.model.Match;
+import com.GroupA.Week4LabA.Model.Match;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
