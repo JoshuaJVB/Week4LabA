@@ -34,3 +34,6 @@ build/
 
 ### H2 Database ###
 *.h2*.db
+
+## macOS ##
+.DS_Store
