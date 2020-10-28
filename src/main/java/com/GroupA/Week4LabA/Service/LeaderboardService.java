@@ -1,12 +1,10 @@
 package com.GroupA.Week4LabA.Service;
 
-import com.GroupA.Week4LabA.Model.Match;
-
-import java.util.Collection;
+import com.GroupA.Week4LabA.Model.Leaderboard;
 
 public interface LeaderboardService {
 
-    public Iterable<Match> getAll();
+    public Iterable<Leaderboard> getAll();
 
-    public Iterable<Match> getSome(int n);
+    public Iterable<Leaderboard> getSome(int n);
 }

@@ -3,15 +3,14 @@ package com.GroupA.Week4LabA.Model;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "Leaderboard")
 public class Leaderboard {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long lib_id;
 
-//    @OneToMany(mappedBy = "leaderboard")
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "leaderboard", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Match> matches;
 
     public Leaderboard(){}
