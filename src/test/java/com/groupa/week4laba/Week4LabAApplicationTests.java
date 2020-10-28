@@ -1,4 +1,4 @@
-package com.GroupA.Week4LabA;
+package com.groupa.week4laba;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

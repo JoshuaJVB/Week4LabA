@@ -1,7 +1,7 @@
-package com.GroupA.Week4LabA.Service;
+package com.groupa.week4laba.service;
 
 import java.util.Optional;
-import com.GroupA.Week4LabA.Model.User;
+import com.groupa.week4laba.model.User;
 
 public interface UserService {
 
