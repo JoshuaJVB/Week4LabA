@@ -49,7 +49,6 @@ public class Week4LabAApplication {
 			matchRepo.save(match);
 			matches.add(match);
 			match = new Match(2000L, user, leaderboard);
-			match.setId(null);
 			matchRepo.save(match);
 			matches.add(match);
 			match = new Match(3000L, user, leaderboard);
