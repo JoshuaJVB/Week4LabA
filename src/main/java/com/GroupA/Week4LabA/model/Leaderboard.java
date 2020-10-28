@@ -1,6 +1,7 @@
 package com.GroupA.Week4LabA.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Leaderboard {
@@ -9,7 +10,8 @@ public class Leaderboard {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long lib_id;
 
-    @OneToMany(mappedBy = "leaderboard")
+//    @OneToMany(mappedBy = "leaderboard")
+    @OneToMany
     private List<Match> matches;
 
     public Leaderboard(){}
