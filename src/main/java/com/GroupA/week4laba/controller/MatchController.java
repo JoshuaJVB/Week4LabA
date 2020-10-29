@@ -4,7 +4,7 @@ import com.groupa.week4laba.service.MatchServiceImpl;
 import com.groupa.week4laba.service.UserServiceImpl;
 import com.groupa.week4laba.model.Match;
 import com.groupa.week4laba.model.User;
-import com.groupa.week4laba.repo.LeaderboardServiceImpl;
+import com.groupa.week4laba.service.LeaderboardServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
