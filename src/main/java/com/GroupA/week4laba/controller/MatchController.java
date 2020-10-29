@@ -1,10 +1,10 @@
-package com.GroupA.week4laba.controller;
+package com.groupa.week4laba.controller;
 
-import com.GroupA.week4laba.service.MatchServiceImpl;
-import com.GroupA.week4laba.service.UserServiceImpl;
-import com.GroupA.week4laba.model.Match;
-import com.GroupA.week4laba.model.User;
-import com.GroupA.week4laba.repo.LeaderboardServiceImpl;
+import com.groupa.week4laba.service.MatchServiceImpl;
+import com.groupa.week4laba.service.UserServiceImpl;
+import com.groupa.week4laba.model.Match;
+import com.groupa.week4laba.model.User;
+import com.groupa.week4laba.repo.LeaderboardServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

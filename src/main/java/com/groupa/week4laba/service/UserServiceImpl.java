@@ -1,12 +1,12 @@
-package com.GroupA.week4laba.service;
+package com.groupa.week4laba.service;
 
-import com.GroupA.week4laba.repo.UserRepo;
+import com.groupa.week4laba.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
 import java.util.Optional;
-import com.GroupA.week4laba.model.User;
+import com.groupa.week4laba.model.User;
 
 @Service
 public class UserServiceImpl implements UserService {
