@@ -88,11 +88,11 @@ public class MatchController {
     	this.matchService.delete(match);
     	return "Match with id (" + match.getId() + ") removed.";
     }
+	@DeleteMapping("/match/delete/{id}")
+	public String removeById(@PathVariable Long id) {
+		this.matchService.delete(id);
+		return "Match with id (" + id + ") removed.";
+	}
 
-    @DeleteMapping("/match/delete")
-    public String removeById(@PathVariable Long id) {
-    	this.matchService.delete(id);
-    	return "Match with id (" + id + ") removed.";
-    }
 
 }
