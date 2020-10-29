@@ -71,7 +71,7 @@ public class GameController {
         game.play();
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("PostSnakeEyes");
+        modelAndView.setViewName("SnakeEyesResults");
         modelAndView.addObject("score", game.getScore());
         modelAndView.addObject("leaderboard", leaderboard);
         modelAndView.addObject("topMatches", leaderboardService.getSome(leaderboard, game.getLeaderboardLength()));
