@@ -6,8 +6,9 @@ import com.groupa.week4laba.model.Match;
 import java.util.List;
 
 public interface LeaderboardService {
+    Leaderboard getLeaderboard(String clazz);
 
     Iterable<Leaderboard> getAll();
 
-    List<Match> getSome(int n);
+    List<Match> getSome(Leaderboard leaderboard, int n);
 }

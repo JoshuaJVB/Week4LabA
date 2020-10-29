@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LeaderboardRepo extends CrudRepository<Leaderboard, Long> {
+    Leaderboard findByClazz(String clazz);
 }
