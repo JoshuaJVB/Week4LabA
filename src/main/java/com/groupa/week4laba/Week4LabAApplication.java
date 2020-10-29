@@ -65,8 +65,8 @@ public class Week4LabAApplication {
 			leaderboard = leaderboardRepo.save(leaderboard);
 
 			
-			System.out.println(leaderboard.getLib_id());
-			leaderboard = leaderboardRepo.findById(leaderboard.getLib_id()).isPresent() ? leaderboardRepo.findById(leaderboard.getLib_id()).get() : null;
+			System.out.println(leaderboard.getId());
+			leaderboard = leaderboardRepo.findById(leaderboard.getId()).isPresent() ? leaderboardRepo.findById(leaderboard.getId()).get() : null;
 			if (leaderboard != null) {
 				matches = leaderboard.getMatches();
 				Collections.sort(matches);

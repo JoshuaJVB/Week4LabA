@@ -14,11 +14,21 @@ import java.util.List;
 public class LeaderboardServiceImpl implements LeaderboardService {
 
     final LeaderboardRepo leaderboardRepo;
-    Leaderboard leaderboard;
 
     @Autowired
     public LeaderboardServiceImpl(LeaderboardRepo leaderboardRepo){
         this.leaderboardRepo = leaderboardRepo;
+    }
+
+    @Override
+    public Leaderboard getLeaderboard(String clazz) {
+        Leaderboard leaderboard = leaderboardRepo.findByClazz(clazz);
+
+        if (leaderboard == null) {
+            leaderboard = new Leaderboard(clazz);
+        }
+
+        return leaderboard;
     }
 
     @Override
@@ -27,8 +37,7 @@ public class LeaderboardServiceImpl implements LeaderboardService {
     }
 
     @Override
-    public List<Match> getSome(int n) {
-        leaderboard = leaderboardRepo.findById(leaderboard.getLib_id()).isPresent() ? leaderboardRepo.findById(leaderboard.getLib_id()).get() : null;
+    public List<Match> getSome(Leaderboard leaderboard, int n) {
         List<Match> topN = new ArrayList<>();
         if (leaderboard != null) {
             List<Match> matches = leaderboard.getMatches();
