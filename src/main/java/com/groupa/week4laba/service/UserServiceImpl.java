@@ -1,10 +1,12 @@
-package com.groupa.week4laba.service;
+package com.GroupA.week4laba.service;
 
-import com.groupa.week4laba.repo.UserRepo;
+import com.GroupA.week4laba.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Iterator;
 import java.util.Optional;
-import com.groupa.week4laba.model.User;
+import com.GroupA.week4laba.model.User;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,13 +20,27 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User getUserByUsername(String username) {
+		Iterable<User> results = repository.findByUsername(username);
+		Iterator<User> iterator = results.iterator();
+
+		User user = null;
+		while (iterator.hasNext()) {
+			user = iterator.next();
+			break;
+		}
+
+		return user;
+	}
+
+	@Override
 	public Iterable<User> getAllUsers() {
 		return repository.findAll();
 	}
 
 	@Override
-	public void saveUser(User user) {
-		repository.save(user);
+	public User saveUser(User user) {
+		return repository.save(user);
 	}
 
 	@Override
@@ -35,8 +51,15 @@ public class UserServiceImpl implements UserService {
             user.setLevel(newUser.getLevel());
             return repository.save(user);
         });
+    }
 
-        repository.findById(id);
+    @Override
+    public void updateTotalScore(Long score, Long forUserWithId) {
+        repository.findById(forUserWithId).map(user -> {
+            user.setTotalScore(score);
+            user.addLevel();
+            return repository.save(user);
+        });
     }
 
 	@Override

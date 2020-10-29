@@ -1,11 +1,11 @@
-package com.groupa.week4laba;
+package com.GroupA.week4laba;
 
-import com.groupa.week4laba.model.Leaderboard;
-import com.groupa.week4laba.model.Match;
-import com.groupa.week4laba.model.User;
-import com.groupa.week4laba.repo.LeaderboardRepo;
-import com.groupa.week4laba.repo.MatchRepo;
-import com.groupa.week4laba.repo.UserRepo;
+import com.GroupA.week4laba.model.Leaderboard;
+import com.GroupA.week4laba.model.Match;
+import com.GroupA.week4laba.model.User;
+import com.GroupA.week4laba.repo.LeaderboardRepo;
+import com.GroupA.week4laba.repo.MatchRepo;
+import com.GroupA.week4laba.repo.UserRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

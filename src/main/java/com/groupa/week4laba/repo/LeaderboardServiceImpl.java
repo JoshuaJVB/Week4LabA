@@ -1,7 +1,7 @@
-package com.groupa.week4laba.repo;
+package com.GroupA.week4laba.repo;
 
-import com.groupa.week4laba.model.Leaderboard;
-import com.groupa.week4laba.service.LeaderboardService;
+import com.GroupA.week4laba.model.Leaderboard;
+import com.GroupA.week4laba.service.LeaderboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
