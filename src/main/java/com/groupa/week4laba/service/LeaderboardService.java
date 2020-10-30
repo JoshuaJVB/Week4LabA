@@ -8,6 +8,8 @@ import java.util.List;
 public interface LeaderboardService {
     Leaderboard getLeaderboard(String clazz);
 
+    Leaderboard save(Leaderboard leaderboard);
+
     Iterable<Leaderboard> getAll();
 
     List<Match> getSome(Leaderboard leaderboard, int n);
