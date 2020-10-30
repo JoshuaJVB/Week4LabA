@@ -1,4 +1,5 @@
 package com.groupa.week4laba.controller;
+
 import com.groupa.week4laba.service.MatchServiceImpl;
 import com.groupa.week4laba.service.UserServiceImpl;
 import com.groupa.week4laba.model.Leaderboard;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 /***********************************************************
  * GameController is responsible for mutating data on the  
  * server and giving a proper response to the user based on
@@ -24,8 +26,10 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @version 0.1
  * @since   10-28-2020
  ***********************************************************/
+
 @Controller
 public class GameController {
+
     // =========================================================
     // Autowired Properties
     // =========================================================
@@ -35,15 +39,20 @@ public class GameController {
     private UserServiceImpl userService;
     @Autowired
     private LeaderboardServiceImpl leaderboardService;
+
+
     // =========================================================
     // Properties
     // =========================================================
     Long signedInUserId;
     String gameChoice;
     Long userScore;
+
+
     // =========================================================
     // GET
     // =========================================================
+
     /***********************************************************
      * GET endpoint that corresponds to the login view.
      * 
@@ -61,6 +70,7 @@ public class GameController {
         model.addAttribute("user", new User());
         return "login";
     }
+
     /***********************************************************
      * GET endpoint that corresponds to the play / game view.
      * 
@@ -75,12 +85,10 @@ public class GameController {
     public String showGame(Model model) {
         Leaderboard leaderboard = leaderboardService.getLeaderboard("com.group.week4laba.game." + this.gameChoice);
         model.addAttribute("game", this.gameChoice);
-        // Shouldn't leaderboard already return 5 matches? / 
-        // For example, leaderboardService.getAll(leaderboard) should only return 5 matches
-        // Logic should be handled in the model, ordering is already handled in the service
         model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, 5));
         return "play";
     }
+
     /***********************************************************
      * GET endpoint that corresponds to the results view.
      * 
@@ -99,9 +107,12 @@ public class GameController {
         model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, 5));
         return "results";
     }
+
+
     // =========================================================
     // POST
     // =========================================================
+
     /***********************************************************
      * POST endpoint that corresponds to the login view's form
      * submission.
@@ -119,14 +130,17 @@ public class GameController {
     @PostMapping("/login")
     public String submitLogin(@ModelAttribute("user") User user) {
         User fetchedUser = userService.getUserByUsername(user.getUsername());
-        if ( !(fetchedUser == null) ) {
+
+        if (fetchedUser != null) {
             this.signedInUserId = fetchedUser.getUserId();
         } else {
             this.signedInUserId = userService.saveUser(new User(user.getUsername())).getUserId();
         }
+
         System.out.println(user.getUsername() + " logged in");
         return "pick_game";
     }
+
     /***********************************************************
      * POST endpoint that corresponds to the pick game view's 
      * form submission.
@@ -148,6 +162,7 @@ public class GameController {
         this.gameChoice = game;
         return "redirect:/play";
     }
+
     /***********************************************************
      * POST endpoint that corresponds to the play view's 
      * form submission.
@@ -166,6 +181,7 @@ public class GameController {
         Leaderboard leaderboard = leaderboardService.getLeaderboard(this.gameChoice);
         Game game;
         Match match;
+
         switch (this.gameChoice) {
             case "SnakeEyes":
                 game = new SnakeEyes();
@@ -173,21 +189,23 @@ public class GameController {
             case "TriScore":
                 game = new TriScore();
                 break;
+            case "Random":
+                game = new Random();
+                break;
             default:
+                System.out.println("Invalid games choice... Defaulting to Random game");
                 game = new Random();
                 break;
         }
+
         game.play();
         userScore = game.getScore();
-        match = matchService.create(new Match(userScore, userService.getUserById(this.signedInUserId)));
-        // TODO: Need an .addMatch(match) method within the Leaderboard class so we can add matches to leaderboard
-        // TODO: Need an .update(leaderboard, id) method within LeaderboardService so we can update the old with the new
-        // Get leaderboard matches via leaderboardService.getAll(leaderboard)
-        // If match score is in top 5, call leaderboard.addMatch(match) which 
-        // will drop the match with the lowest score and add the new match
-        // Ordering will happen in its service class
+        match = matchService.create(new Match(userScore, userService.getUserById(this.signedInUserId), leaderboard));
+        leaderboard.getMatches().add(match);
+
         return "results";
     }
+
     /***********************************************************
      * POST endpoint that corresponds to the results view's 
      * form submission.
@@ -215,4 +233,5 @@ public class GameController {
         }
         return redirect;
     }
+
 }
