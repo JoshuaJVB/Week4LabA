@@ -1,8 +1,6 @@
 package com.groupa.week4laba.game;
 
 public class Random implements Game {
-    private static final int LEADERBOARD_LENGTH = 5;
-
     private Long score;
 
     @Override
@@ -18,10 +16,5 @@ public class Random implements Game {
     @Override
     public Long[] getScores() throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public int getLeaderboardLength() {
-        return LEADERBOARD_LENGTH;
     }
 }

@@ -26,9 +26,15 @@ public class LeaderboardServiceImpl implements LeaderboardService {
 
         if (leaderboard == null) {
             leaderboard = new Leaderboard(clazz);
+            leaderboard = leaderboardRepo.save(leaderboard);
         }
 
         return leaderboard;
+    }
+
+    @Override
+    public Leaderboard save(Leaderboard leaderboard) {
+        return leaderboardRepo.save(leaderboard);
     }
 
     @Override

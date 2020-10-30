@@ -74,7 +74,7 @@ public class GameController {
         modelAndView.setViewName("SnakeEyesResults");
         modelAndView.addObject("score", game.getScore());
         modelAndView.addObject("leaderboard", leaderboard);
-        modelAndView.addObject("topMatches", leaderboardService.getSome(leaderboard, game.getLeaderboardLength()));
+        modelAndView.addObject("topMatches", leaderboardService.getSome(leaderboard, Game.LEADERBOARD_LENGTH));
         return modelAndView;
     }
 
@@ -87,7 +87,7 @@ public class GameController {
         modelAndView.setViewName("PostTriScore");
         modelAndView.addObject("scores", game.getScores());
         modelAndView.addObject("leaderboard", leaderboard);
-        modelAndView.addObject("topMatches", leaderboardService.getSome(leaderboard, game.getLeaderboardLength()));
+        modelAndView.addObject("topMatches", leaderboardService.getSome(leaderboard, Game.LEADERBOARD_LENGTH));
         return modelAndView;
     }
 
@@ -100,7 +100,7 @@ public class GameController {
         modelAndView.setViewName("PostRandom");
         modelAndView.addObject("score", game.getScore());
         modelAndView.addObject("leaderboard", leaderboard);
-        modelAndView.addObject("topMatches", leaderboardService.getSome(leaderboard, game.getLeaderboardLength()));
+        modelAndView.addObject("topMatches", leaderboardService.getSome(leaderboard, Game.LEADERBOARD_LENGTH));
         return modelAndView;
     }
 
