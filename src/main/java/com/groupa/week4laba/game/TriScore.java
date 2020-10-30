@@ -1,8 +1,6 @@
 package com.groupa.week4laba.game;
 
 public class TriScore implements Game {
-    private static final int LEADERBOARD_LENGTH = 5;
-
     private Long[] score;
 
     @Override
@@ -23,10 +21,5 @@ public class TriScore implements Game {
     @Override
     public Long[] getScores() throws UnsupportedOperationException {
         return score;
-    }
-
-    @Override
-    public int getLeaderboardLength() {
-        return LEADERBOARD_LENGTH;
     }
 }

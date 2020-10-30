@@ -3,7 +3,6 @@ package com.groupa.week4laba.game;
 public class SnakeEyes implements Game {
     private static final int ROUNDS = 500000;
     private static final Long POINTS = 42L;
-    private static final int LEADERBOARD_LENGTH = 5;
 
 
     private Long score;
@@ -30,10 +29,5 @@ public class SnakeEyes implements Game {
     @Override
     public Long[] getScores() throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public int getLeaderboardLength() {
-        return LEADERBOARD_LENGTH;
     }
 }
