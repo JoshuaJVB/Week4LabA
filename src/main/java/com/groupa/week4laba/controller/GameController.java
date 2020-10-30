@@ -112,9 +112,6 @@ public class GameController {
     public String showResults(Model model) {
         Leaderboard leaderboard = leaderboardService.getLeaderboard("com.group.week4laba.game." + this.gameChoice);
         model.addAttribute("userScore", this.userScore);
-        // Shouldn't leaderboard already return 5 matches? / 
-        // For example, leaderboardService.getAll(leaderboard) should only return 5 matches
-        // Logic should be handled in the model, ordering is already handled in the service
         model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, 5));
         return "results";
     }
