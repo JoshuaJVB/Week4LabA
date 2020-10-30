@@ -58,4 +58,9 @@ public class LeaderboardServiceImpl implements LeaderboardService {
         }
         return topN;
     }
+
+    @Override
+    public void delete(Long id){
+        leaderboardRepo.deleteById(id);
+    }
 }

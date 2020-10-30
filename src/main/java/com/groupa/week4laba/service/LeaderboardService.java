@@ -13,4 +13,6 @@ public interface LeaderboardService {
     Iterable<Leaderboard> getAll();
 
     List<Match> getSome(Leaderboard leaderboard, int n);
+
+    void delete(Long id);
 }
