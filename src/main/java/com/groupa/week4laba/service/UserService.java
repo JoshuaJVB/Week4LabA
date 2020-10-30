@@ -5,7 +5,7 @@ import com.groupa.week4laba.model.User;
 
 public interface UserService {
 
-	Optional<User>getUserById(Long id);
+	User getUserById(Long id);
 	User getUserByUsername(String username);
 	Iterable<User> getAllUsers();
 	User saveUser(User user);

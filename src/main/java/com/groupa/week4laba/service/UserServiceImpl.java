@@ -3,9 +3,7 @@ package com.groupa.week4laba.service;
 import com.groupa.week4laba.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Iterator;
-import java.util.Optional;
 import com.groupa.week4laba.model.User;
 
 @Service
@@ -14,9 +12,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepo repository;
 
+	// =========================================================
+    // GET
+    // =========================================================
+
 	@Override
-	public Optional<User> getUserById(Long id) {
-		return repository.findById(id);
+	public User getUserById(Long id) {
+		return repository.findById(id).isPresent() ? repository.findById(id).get() : null;
 	}
 
 	@Override
@@ -38,10 +40,18 @@ public class UserServiceImpl implements UserService {
 		return repository.findAll();
 	}
 
+	// =========================================================
+    // POST
+    // =========================================================
+
 	@Override
 	public User saveUser(User user) {
 		return repository.save(user);
 	}
+
+	// =========================================================
+    // PUT
+    // =========================================================
 
 	@Override
     public void updateUser(User newUser, Long id) {
@@ -61,6 +71,10 @@ public class UserServiceImpl implements UserService {
             return repository.save(user);
         });
     }
+
+    // =========================================================
+    // DELETE
+    // =========================================================
 
 	@Override
 	public void removeUserById(Long id) {
