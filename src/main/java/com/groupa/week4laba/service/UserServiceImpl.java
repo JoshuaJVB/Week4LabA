@@ -3,22 +3,41 @@ package com.groupa.week4laba.service;
 import com.groupa.week4laba.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 import java.util.Iterator;
 import com.groupa.week4laba.model.User;
+
+/***********************************************************
+ * @author  Tye Porter (github.com/tyeporter)
+ * @version 0.1
+ * @since   10-28-2020
+ ***********************************************************/
 
 @Service
 public class UserServiceImpl implements UserService {
 
+	// =========================================================
+    // Properties
+    // =========================================================
+
+	private final UserRepo repository;
+
+	// =========================================================
+    // Constructor
+    // =========================================================
+
 	@Autowired
-	UserRepo repository;
+	public UserServiceImpl(UserRepo userRepo) {
+		this.repository = userRepo;
+	}
 
 	// =========================================================
     // GET
     // =========================================================
 
 	@Override
-	public User getUserById(Long id) {
-		return repository.findById(id).isPresent() ? repository.findById(id).get() : null;
+	public Optional<User> getUserById(Long id) {
+		return repository.findById(id);
 	}
 
 	@Override
@@ -30,6 +49,10 @@ public class UserServiceImpl implements UserService {
 		while (iterator.hasNext()) {
 			user = iterator.next();
 			break;
+		}
+
+		if (user == null) {
+			user = repository.save(new User(username));
 		}
 
 		return user;

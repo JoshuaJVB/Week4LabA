@@ -24,6 +24,8 @@ public class Week4LabAApplication {
 		SpringApplication.run(Week4LabAApplication.class, args);
 	}
 
+	// TODO: Remember to delete all of the code below before testing GameController
+
 	@Bean
 	public CommandLineRunner gameDemo(MatchService matchService, UserService userService, LeaderboardService leaderboardService) {
 		return (args) -> {

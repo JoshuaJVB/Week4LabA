@@ -6,6 +6,7 @@ import com.groupa.week4laba.model.Leaderboard;
 import com.groupa.week4laba.model.Match;
 import com.groupa.week4laba.model.User;
 import com.groupa.week4laba.service.LeaderboardServiceImpl;
+import java.util.Arrays;
 import com.groupa.week4laba.game.Game;
 import com.groupa.week4laba.game.SnakeEyes;
 import com.groupa.week4laba.game.TriScore;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /***********************************************************
- * GameController is responsible for mutating data on the  
+ * {@code GameController} is responsible for mutating data on the  
  * server and giving a proper response to the user based on
  * user input
  *
@@ -31,22 +32,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class GameController {
 
     // =========================================================
-    // Autowired Properties
+    // Injected Properties
     // =========================================================
-    @Autowired
-    private MatchServiceImpl matchService;
-    @Autowired
-    private UserServiceImpl userService;
-    @Autowired
-    private LeaderboardServiceImpl leaderboardService;
+
+    private final MatchServiceImpl matchService;
+    private final UserServiceImpl userService;
+    private final LeaderboardServiceImpl leaderboardService;
 
 
     // =========================================================
     // Properties
     // =========================================================
-    Long signedInUserId;
+
+    String signedInUserUsername;
     String gameChoice;
     Long userScore;
+
+
+    // =========================================================
+    // Constructor
+    // =========================================================
+
+    @Autowired
+    public GameController(MatchServiceImpl matchService, UserServiceImpl userService, LeaderboardServiceImpl leaderboardService) {
+        this.signedInUserUsername = "guest";
+        this.gameChoice = "Random";
+        this.userScore = Long.valueOf(0);
+        this.matchService = matchService;
+        this.userService = userService;
+        this.leaderboardService = leaderboardService;
+    }
 
 
     // =========================================================
@@ -54,7 +69,7 @@ public class GameController {
     // =========================================================
 
     /***********************************************************
-     * GET endpoint that corresponds to the login view.
+     * GET endpoint that corresponds to the login.html view.
      * 
      * This method is responsible for passing a new {@code User} 
      * to the {@code /login} Thymeleaf view model
@@ -64,17 +79,33 @@ public class GameController {
      ***********************************************************/
     @GetMapping("/login")
     public String showLogin(Model model) {
-        signedInUserId = null;
-        gameChoice = null;
-        userScore = null;
+        this.resetAllValues();
         model.addAttribute("user", new User());
-        return "login";
+        return "login_page";
     }
 
     /***********************************************************
-     * GET endpoint that corresponds to the play / game view.
+     * GET endpoint that corresponds to the pick_game.html view.
      * 
-     * This method is responsible for passing the  {@code Game} 
+     * This method is responsible for passing the logged in 
+     * {@code User} 
+     * to the {@code /login} Thymeleaf view model
+     *
+     * @param model The Thymeleaf view model for the 
+     * {@code /login} endpoint
+     ***********************************************************/
+    @GetMapping("/pickGame")
+    public String showGameChoices(Model model) {
+        this.resetGameChoice();
+        model.addAttribute("user", userService.getUserByUsername(this.signedInUserUsername));
+        model.addAttribute("games", Arrays.asList("SnakeEyes", "TriScore", "Random"));
+        return "pick_game";
+    }
+
+    /***********************************************************
+     * GET endpoint that corresponds to the play.html view.
+     * 
+     * This method is responsible for passing the {@code Game} 
      * and the {@code Leaderboard} to the {@code /play} 
      * Thymeleaf view model
      *
@@ -83,14 +114,15 @@ public class GameController {
      ***********************************************************/
     @GetMapping("/play")
     public String showGame(Model model) {
+        this.resetScore();
         Leaderboard leaderboard = leaderboardService.getLeaderboard("com.group.week4laba.game." + this.gameChoice);
         model.addAttribute("game", this.gameChoice);
         model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, 5));
-        return "play";
+        return "play_game";
     }
 
     /***********************************************************
-     * GET endpoint that corresponds to the results view.
+     * GET endpoint that corresponds to the results.html view.
      * 
      * This method is responsible for passing the updated 
      * {@code Game} with {@code User} score
@@ -105,7 +137,7 @@ public class GameController {
         Leaderboard leaderboard = leaderboardService.getLeaderboard("com.group.week4laba.game." + this.gameChoice);
         model.addAttribute("userScore", this.userScore);
         model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, 5));
-        return "results";
+        return "results_page";
     }
 
 
@@ -130,15 +162,10 @@ public class GameController {
     @PostMapping("/login")
     public String submitLogin(@ModelAttribute("user") User user) {
         User fetchedUser = userService.getUserByUsername(user.getUsername());
+        this.signedInUserUsername = fetchedUser.getUsername();
 
-        if (fetchedUser != null) {
-            this.signedInUserId = fetchedUser.getUserId();
-        } else {
-            this.signedInUserId = userService.saveUser(new User(user.getUsername())).getUserId();
-        }
-
-        System.out.println(user.getUsername() + " logged in");
-        return "pick_game";
+        System.out.println(this.signedInUserUsername + " logged in");
+        return "redirect:/pickGame";
     }
 
     /***********************************************************
@@ -158,7 +185,7 @@ public class GameController {
      ***********************************************************/
     @PostMapping("/pickGame")
     public String pickGame(@ModelAttribute("game") String game) {
-        System.out.println(game);
+        System.out.println("Playing " + game + "...");
         this.gameChoice = game;
         return "redirect:/play";
     }
@@ -193,17 +220,17 @@ public class GameController {
                 game = new Random();
                 break;
             default:
-                System.out.println("Invalid games choice... Defaulting to Random game");
+                System.out.println("Invalid game choice... Defaulting to Random game");
                 game = new Random();
                 break;
         }
 
         game.play();
         userScore = game.getScore();
-        match = matchService.create(new Match(userScore, userService.getUserById(this.signedInUserId), leaderboard));
+        match = matchService.create(new Match(userScore, userService.getUserByUsername(this.signedInUserUsername), leaderboard));
         leaderboard.getMatches().add(match);
 
-        return "results";
+        return "redirect:/results";
     }
 
     /***********************************************************
@@ -220,18 +247,39 @@ public class GameController {
         switch (endGameChoice) {
             case "PlayAgain":
                 redirect = "redirect:/play";
+                this.resetScore();
                 break;
             case "OtherGame":
-                redirect = "pick_game";
+                redirect = "redirect:/pickGame";
+                this.resetScore();
                 break;
             case "SignOut":
                 redirect = "redirect:/login";
                 break;
             default:
-                redirect = "invalid_selection";
+                redirect = "404";
                 break;
         }
         return redirect;
+    }
+
+
+    // =========================================================
+    // HELPER METHODS
+    // =========================================================
+
+    private void resetAllValues() {
+        this.signedInUserUsername = "guest";
+        this.gameChoice = "Random";
+        this.userScore = Long.valueOf(0);
+    }
+
+    private void resetGameChoice() {
+        this.gameChoice = "Random";
+    }
+
+    private void resetScore() {
+        this.userScore = Long.valueOf(0);
     }
 
 }
