@@ -4,7 +4,6 @@ import com.groupa.week4laba.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
-import java.util.Iterator;
 import com.groupa.week4laba.model.User;
 
 /***********************************************************
@@ -42,14 +41,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserByUsername(String username) {
-		Iterable<User> results = repository.findByUsername(username);
-		Iterator<User> iterator = results.iterator();
-
-		User user = null;
-		while (iterator.hasNext()) {
-			user = iterator.next();
-			break;
-		}
+		User user = repository.findByUsername(username).orElse(null);
 
 		if (user == null) {
 			user = repository.save(new User(username));

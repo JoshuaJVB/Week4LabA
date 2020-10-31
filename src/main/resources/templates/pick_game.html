@@ -1,18 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Pick Game Page</title>
-	<style type="text/css">
-		body {
-			font-family: sans-serif;
-		}
-	</style>
-</head>
-<body>
-	<div align="center">
-		<h1>Pick Game</h1>
-	</div>
-</body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Pick a Game</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+		<style type="text/css">
+			body {
+				font-family: sans-serif;
+				text-align: center;
+			}
+
+			.box {
+				background-color: #1d1d1d;
+				color: #fff;
+			}
+
+			form { 
+				max-width: 50%; 
+				margin: 5px auto 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container is-max-desktop">
+			<!-- Page Heading -->
+			<h1 class="title">Hello, <span th:text="${user.username}"></span>! Pick a Game</h1>
+
+			<!-- Inforamtion about Implementation -->
+			<div class="box">
+				<p>After choosing a game, with a POST method on URL /pickGame</p>
+				<p>Which redirects to URL /play on file play.html</p>
+				<p>Very crude demo, below:</p>
+			</div>
+		
+			<!-- User Choices for Game -->
+			<form th:action="@{/pickGame}" method="post">
+				<span th:each="game : ${games}">
+					<button class="button" type="submit" th:name="game" th:value='${game.replaceAll(" ", "")}' th:text="${game}"></button>
+				</span>
+			</form>
+		</div>
+	</body>
 </html>

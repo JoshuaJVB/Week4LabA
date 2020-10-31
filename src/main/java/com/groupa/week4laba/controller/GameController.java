@@ -77,7 +77,7 @@ public class GameController {
      * @param model The Thymeleaf view model for the 
      * {@code /login} endpoint
      ***********************************************************/
-    @GetMapping("/login")
+    @GetMapping({"/login", "/"})
     public String showLogin(Model model) {
         this.resetAllValues();
         model.addAttribute("user", new User());
@@ -98,7 +98,7 @@ public class GameController {
     public String showGameChoices(Model model) {
         this.resetGameChoice();
         model.addAttribute("user", userService.getUserByUsername(this.signedInUserUsername));
-        model.addAttribute("games", Arrays.asList("SnakeEyes", "TriScore", "Random"));
+        model.addAttribute("games", Arrays.asList("Snake Eyes", "Tri Score", "Random"));
         return "pick_game";
     }
 
@@ -115,7 +115,7 @@ public class GameController {
     @GetMapping("/play")
     public String showGame(Model model) {
         this.resetScore();
-        Leaderboard leaderboard = leaderboardService.getLeaderboard("com.group.week4laba.game." + this.gameChoice);
+        Leaderboard leaderboard = leaderboardService.getLeaderboard(this.getGameChoiceClazz());
         model.addAttribute("game", this.gameChoice);
         model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, 5));
         return "play_game";
@@ -134,9 +134,10 @@ public class GameController {
      ***********************************************************/
     @GetMapping("/results")
     public String showResults(Model model) {
-        Leaderboard leaderboard = leaderboardService.getLeaderboard("com.group.week4laba.game." + this.gameChoice);
+        Leaderboard leaderboard = leaderboardService.getLeaderboard(this.getGameChoiceClazz());
         model.addAttribute("userScore", this.userScore);
-        model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, 5));
+        model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, Game.LEADERBOARD_LENGTH));
+        model.addAttribute("actions", Arrays.asList("Play Again", "Choose Game", "Log Out"));
         return "results_page";
     }
 
@@ -205,7 +206,8 @@ public class GameController {
      ***********************************************************/
     @PostMapping("/play")
     public String pressedPlay() {
-        Leaderboard leaderboard = leaderboardService.getLeaderboard(this.gameChoice);
+        User user = userService.getUserByUsername(this.signedInUserUsername);
+        Leaderboard leaderboard = leaderboardService.getLeaderboard(this.getGameChoiceClazz());
         Game game;
         Match match;
 
@@ -227,7 +229,9 @@ public class GameController {
 
         game.play();
         userScore = game.getScore();
-        match = matchService.create(new Match(userScore, userService.getUserByUsername(this.signedInUserUsername), leaderboard));
+        user.setScore(userScore);
+        user = this.userService.saveUser(user);
+        match = matchService.create(new Match(userScore, user, leaderboard));
         leaderboard.getMatches().add(match);
 
         return "redirect:/results";
@@ -249,11 +253,11 @@ public class GameController {
                 redirect = "redirect:/play";
                 this.resetScore();
                 break;
-            case "OtherGame":
+            case "ChooseGame":
                 redirect = "redirect:/pickGame";
                 this.resetScore();
                 break;
-            case "SignOut":
+            case "LogOut":
                 redirect = "redirect:/login";
                 break;
             default:
@@ -267,6 +271,10 @@ public class GameController {
     // =========================================================
     // HELPER METHODS
     // =========================================================
+
+    private String getGameChoiceClazz() {
+        return "com.group.week4laba.game." + this.gameChoice;
+    }   
 
     private void resetAllValues() {
         this.signedInUserUsername = "guest";

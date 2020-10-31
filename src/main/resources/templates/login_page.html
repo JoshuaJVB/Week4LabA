@@ -1,18 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login Page</title>
-	<style type="text/css">
-		body {
-			font-family: sans-serif;
-		}
-	</style>
-</head>
-<body>
-	<div align="center">
-		<h1>Login</h1>
-	</div>
-</body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Login</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+        <style type="text/css">
+            body {
+                font-family: sans-serif;
+                text-align: center;
+            }
+
+            .box {
+                background-color: #1d1d1d;
+                color: #fff;
+            }
+
+            form { 
+                max-width: 50%; 
+                margin: 0 auto;
+            }
+
+            button {
+                display: inline-block;
+                margin-top: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container is-max-desktop">
+            <!-- Page Heading -->
+            <h1 class="title">User Login</h1>
+
+            <!-- Information about Implementation -->
+            <div class="box">
+                <p>At login.html</p>
+                <p>Next step is a POST to /login</p>
+                <p>Which goes to file pick_game.html.</p>
+                <p>Demo below:</p>
+            </div>
+            
+            <!-- Username Input Form -->
+            <form th:action="@{/login}" th:object="${user}" method="post" >
+                <input class="input" type="text" th:field="*{username}" placeholder="Username" /><br>
+                <button class="button" type="submit" >Submit</button>
+            </form>
+        </div>
+    </body>
 </html>
