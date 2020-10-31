@@ -24,52 +24,54 @@ public class Week4LabAApplication {
 		SpringApplication.run(Week4LabAApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner gameDemo(MatchService matchService, UserService userService, LeaderboardService leaderboardService) {
-		return (args) -> {
-			playGame("blaztek", leaderboardService, matchService, userService);
-			playGame("jackstraw", leaderboardService, matchService, userService);
-			playGame("blaztek", leaderboardService, matchService, userService);
-			playGame("ststephen", leaderboardService, matchService, userService);
-			playGame("blaztek", leaderboardService, matchService, userService);
-			playGame("caseyjones", leaderboardService, matchService, userService);
+	// TODO: Remember to delete all of the code below before testing GameController
 
-			Leaderboard leaderboard = leaderboardService.getLeaderboard(gameId);
-			List<Match> topN = leaderboardService.getSome(leaderboard, Game.LEADERBOARD_LENGTH);
+	// @Bean
+	// public CommandLineRunner gameDemo(MatchService matchService, UserService userService, LeaderboardService leaderboardService) {
+	// 	return (args) -> {
+	// 		playGame("blaztek", leaderboardService, matchService, userService);
+	// 		playGame("jackstraw", leaderboardService, matchService, userService);
+	// 		playGame("blaztek", leaderboardService, matchService, userService);
+	// 		playGame("ststephen", leaderboardService, matchService, userService);
+	// 		playGame("blaztek", leaderboardService, matchService, userService);
+	// 		playGame("caseyjones", leaderboardService, matchService, userService);
 
-			printLeaderboard(topN);
-		};
-	}
+	// 		Leaderboard leaderboard = leaderboardService.getLeaderboard(gameId);
+	// 		List<Match> topN = leaderboardService.getSome(leaderboard, Game.LEADERBOARD_LENGTH);
 
-	private void playGame(String username, LeaderboardService leaderboardService, MatchService matchService, UserService userService) {
-		Leaderboard leaderboard = leaderboardService.getLeaderboard(gameId);
-		List<Match> matches = leaderboard.getMatches();
-		User user = userService.getUserByUsername(username);
+	// 		printLeaderboard(topN);
+	// 	};
+	// }
 
-		Game game = new SnakeEyes();
-		game.play();
+	// private void playGame(String username, LeaderboardService leaderboardService, MatchService matchService, UserService userService) {
+	// 	Leaderboard leaderboard = leaderboardService.getLeaderboard(gameId);
+	// 	List<Match> matches = leaderboard.getMatches();
+	// 	User user = userService.getUserByUsername(username);
 
-		user.setScore(game.getScore());
-		user = userService.saveUser(user);
+	// 	Game game = new SnakeEyes();
+	// 	game.play();
 
-		Match match = new Match(game.getScore(), user, leaderboard);
-		match = matchService.create(match);
-		matches.add(match);
+	// 	user.setScore(game.getScore());
+	// 	user = userService.saveUser(user);
 
-		System.out.printf("%10s scored: %d%n", username, match.getScore());
-	}
+	// 	Match match = new Match(game.getScore(), user, leaderboard);
+	// 	match = matchService.create(match);
+	// 	matches.add(match);
 
-	private void printLeaderboard(List<Match> matches) {
-		System.out.println("############");
-		System.out.println(" Snake Eyes");
-		System.out.println("############");
+	// 	System.out.printf("%10s scored: %d%n", username, match.getScore());
+	// }
 
-		int index = 1;
+	// private void printLeaderboard(List<Match> matches) {
+	// 	System.out.println("############");
+	// 	System.out.println(" Snake Eyes");
+	// 	System.out.println("############");
 
-		for (Match match : matches) {
-			System.out.printf("#%d: %10s\t%d%n", index++, match.getUser().getUsername(), match.getScore());
-		}
-	}
+	// 	int index = 1;
+
+	// 	for (Match match : matches) {
+	// 		System.out.printf("#%d: %10s\t%d%n", index++, match.getUser().getUsername(), match.getScore());
+	// 	}
+	// }
 
 
 //	@Bean

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Results</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+        <style type="text/css">
+            body {
+                font-family: sans-serif;
+                text-align: center;
+            }
+
+            .box {
+                background-color: #1d1d1d;
+                color: #fff;
+            }
+
+            table {
+                margin: 0 auto;
+            }
+
+            form { 
+                max-width: 50%; 
+                margin: 0 auto;
+            }
+
+            .bold { font-weight: bold !important; }
+            .underline { text-decoration: underline !important; }
+        </style>
+    </head>
+    <body>
+        <div class="container is-max-desktop">
+            <!-- Page Heading -->
+            <h1 class="title">Game Results</h1>
+
+            <!-- Information about Functionality -->
+            <div class="box">
+                <p>Results are displayed</p>
+                <p>A choice of PlayAgain, OtherGame, or SignOut is given</p>
+                <p>The POST is to /results</p>
+                <p>Giving up the proper page to be displayed next.</p>
+                <p>Demo below:</p>
+            </div>
+
+            <!-- Leaderboard -->
+            <h2 class="subtitle">Leaderboard</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Score</th>
+                    <th>Level</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <th:block th:each="match : ${leaderboard}">
+                        <tr>
+                            <td>1</td>
+                            <td th:text="${match.getUser().getUsername()}">...</td>
+                            <td th:text="${match.getScore()}">...</td>
+                            <td th:text="${match.getUser().getLevel()}">...</td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+
+            <!-- Game Results -->
+            <h2 class="subtitle is-2 bold">Congratulations</h2>
+            <h3 class="subtitle is-3">Your score is <span class="bold underline" th:text="${userScore}"></span>!</h3>
+
+            <!-- User Choices for End of Game -->
+            <form th:action="@{/results}" method="post" >
+                <span th:each="action : ${actions}">
+                    <button class="button" type="submit" th:name="endGameChoice" th:value='${action.replaceAll(" ", "")}' th:text="${action}"></button>
+                </span>
+            </form>
+        </div>
+    </body>
+</html>
