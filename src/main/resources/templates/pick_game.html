@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+</head>
+<body>
+<p>Hello, <span th:text="${user.username}"></span></p>
+<p>After choosing a game, with a POST method on URL /pickGame</p>
+<p>Which redirects to URL /play on file play.html</p>
+<p>Very crude demo, below:</p>
+
+<form action="#" th:action="@{/pickGame}" method="post" >
+    <input name="game" placeholder="Name of game (Random, SnakeEyes, TriScore)" />
+    <button type="submit" >Submit</button>
+</form>
+
+
+</body>
+</html>
