@@ -18,18 +18,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserById(Long id) {
-		return repository.findById(id).isPresent() ? repository.findById(id).get() : null;
+		return repository.findById(id).orElse(null);
 	}
 
 	@Override
 	public User getUserByUsername(String username) {
-		Iterable<User> results = repository.findByUsername(username);
-		Iterator<User> iterator = results.iterator();
+		User user = repository.findByUsername(username).orElse(null);
 
-		User user = null;
-		while (iterator.hasNext()) {
-			user = iterator.next();
-			break;
+		if (user == null) {
+			user = repository.save(new User(username));
 		}
 
 		return user;

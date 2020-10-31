@@ -44,11 +44,13 @@ public class Week4LabAApplication {
 	private void playGame(String username, LeaderboardService leaderboardService, MatchService matchService, UserService userService) {
 		Leaderboard leaderboard = leaderboardService.getLeaderboard(gameId);
 		List<Match> matches = leaderboard.getMatches();
-		User user = new User(username);
-		user = userService.saveUser(user);
+		User user = userService.getUserByUsername(username);
 
 		Game game = new SnakeEyes();
 		game.play();
+
+		user.setScore(game.getScore());
+		user = userService.saveUser(user);
 
 		Match match = new Match(game.getScore(), user, leaderboard);
 		match = matchService.create(match);

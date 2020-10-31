@@ -62,7 +62,7 @@ public class GameController {
      * @param model The Thymeleaf view model for the 
      * {@code /login} endpoint
      ***********************************************************/
-    @GetMapping("/login")
+    @GetMapping({"/login", "/"})
     public String showLogin(Model model) {
         signedInUserId = null;
         gameChoice = null;
@@ -103,8 +103,9 @@ public class GameController {
     @GetMapping("/results")
     public String showResults(Model model) {
         Leaderboard leaderboard = leaderboardService.getLeaderboard("com.group.week4laba.game." + this.gameChoice);
+        model.addAttribute("user", userService.getUserById(signedInUserId));
         model.addAttribute("userScore", this.userScore);
-        model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, 5));
+        model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, Game.LEADERBOARD_LENGTH));
         return "results";
     }
 
@@ -177,7 +178,7 @@ public class GameController {
      * endpoint
      ***********************************************************/
     @PostMapping("/play")
-    public String pressedPlay() {
+    public String pressedPlay(Model model) {
         Leaderboard leaderboard = leaderboardService.getLeaderboard(this.gameChoice);
         Game game;
         Match match;
@@ -203,6 +204,14 @@ public class GameController {
         match = matchService.create(new Match(userScore, userService.getUserById(this.signedInUserId), leaderboard));
         leaderboard.getMatches().add(match);
 
+        User user = userService.getUserById(signedInUserId);
+        user.setScore(userScore);
+        user = userService.saveUser(user);
+
+        model.addAttribute("user", user);
+        model.addAttribute("userScore", userScore);
+        model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, Game.LEADERBOARD_LENGTH));
+
         return "results";
     }
 
@@ -215,13 +224,14 @@ public class GameController {
      * button that they've chose.
      ***********************************************************/
     @PostMapping("/results")
-    public String endGame(@ModelAttribute("endGameChoice") String endGameChoice) {
+    public String endGame(@ModelAttribute("endGameChoice") String endGameChoice, Model model) {
         String redirect;
         switch (endGameChoice) {
             case "PlayAgain":
                 redirect = "redirect:/play";
                 break;
             case "OtherGame":
+                model.addAttribute("user", userService.getUserById(signedInUserId));
                 redirect = "pick_game";
                 break;
             case "SignOut":

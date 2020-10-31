@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+</head>
+<body>
+<p>At login.html</p>
+<p>Next step is a POST to /login</p>
+<p>Which goes to file pick_name.html.</p>
+<p>Demo below:</p>
+
+<form action="#" th:action="@{/login}" th:object="${user}" method="post" >
+    <input th:field="*{username}" placeholder="Username" />
+    <button type="submit" >Submit</button>
+</form>
+
+</body>
+</html>
