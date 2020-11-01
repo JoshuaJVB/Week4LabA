@@ -1,5 +1,8 @@
 package com.groupa.week4laba.game;
 
+/**
+ * The Random game returns a random score from 0 to Long.MAX_VALUE.
+ */
 public class Random implements Game {
     private Long score;
 

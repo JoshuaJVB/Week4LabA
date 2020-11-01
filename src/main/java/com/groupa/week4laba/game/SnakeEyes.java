@@ -1,7 +1,15 @@
 package com.groupa.week4laba.game;
 
+/**
+ * The SnakeEyes game rolls two 6-sided dice and checks for snake eyes. If the check succeeds, the number of POINTS is
+ * awared.
+ *
+ * This game is played the amount of times as setup in ROUNDS.
+ *
+ * The final score is a summation of the POINTS awarded.
+ */
 public class SnakeEyes implements Game {
-    private static final int ROUNDS = 500000;
+    private static final int ROUNDS = 1000000;
     private static final Long POINTS = 42L;
 
 

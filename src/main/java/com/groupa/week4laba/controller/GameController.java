@@ -136,7 +136,7 @@ public class GameController {
     public String showResults(Model model) {
         Leaderboard leaderboard = leaderboardService.getLeaderboard(this.getGameChoiceClazz());
         model.addAttribute("userScore", this.userScore);
-        model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, Game.LEADERBOARD_LENGTH));
+        model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, Match.LEADERBOARD_LENGTH));
         model.addAttribute("actions", Arrays.asList("Play Again", "Choose Game", "Log Out"));
         return "results_page";
     }
