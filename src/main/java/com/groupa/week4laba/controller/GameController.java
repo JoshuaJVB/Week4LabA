@@ -57,7 +57,7 @@ public class GameController {
     public GameController(MatchServiceImpl matchService, UserServiceImpl userService, LeaderboardServiceImpl leaderboardService) {
         this.signedInUserUsername = "guest";
         this.gameChoice = "Random";
-        this.userScore = Long.valueOf(0);
+        this.userScore = 0L;
         this.matchService = matchService;
         this.userService = userService;
         this.leaderboardService = leaderboardService;
@@ -117,7 +117,7 @@ public class GameController {
         this.resetScore();
         Leaderboard leaderboard = leaderboardService.getLeaderboard(this.getGameChoiceClazz());
         model.addAttribute("game", this.gameChoice);
-        model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, 5));
+        model.addAttribute("leaderboard", leaderboardService.getSome(leaderboard, Match.LEADERBOARD_LENGTH));
         return "play_game";
     }
 
@@ -279,7 +279,7 @@ public class GameController {
     private void resetAllValues() {
         this.signedInUserUsername = "guest";
         this.gameChoice = "Random";
-        this.userScore = Long.valueOf(0);
+        this.userScore = 0L;
     }
 
     private void resetGameChoice() {
@@ -287,7 +287,7 @@ public class GameController {
     }
 
     private void resetScore() {
-        this.userScore = Long.valueOf(0);
+        this.userScore = 0L;
     }
 
 }
