@@ -25,7 +25,7 @@ public class TriScore implements Game {
 
     @Override
     public Long getScore() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
+        return score[3];
     }
 
     @Override
