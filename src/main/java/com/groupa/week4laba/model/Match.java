@@ -3,11 +3,12 @@ package com.groupa.week4laba.model;
 import javax.persistence.*;
 
 /**
- * The Match entity (or table) represents one {@link com.groupa.week4laba.game.Game Game} played.
+ * <p>The Match entity (or table) represents one {@link com.groupa.week4laba.game.Game Game} played.</p>
  *
- * The {@link #getUser() user} property is a OneToOne mapping to the {@link User} entity/table.
+ * <p>The {@link #getUser() user} property is a OneToOne mapping to the {@link User} entity/table.</p>
  *
- * The {@link #getLeaderboard() leaderboard} property is a ManyToMany mapping to the {@link Leaderboard} entity/table.
+ * <p>The {@link #getLeaderboard() leaderboard} property is a ManyToMany mapping to the {@link Leaderboard}
+ * entity/table.</p>
  */
 @Entity(name = "Match")
 public class Match implements Comparable<Match> {

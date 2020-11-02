@@ -1,14 +1,14 @@
 package com.groupa.week4laba.game;
 
 /**
- * The TriScore game randomly picks 3 scores and then combines them into a final score. All 4 scores are returned
- * by the {@link #getScores()} method.
+ * <p>The TriScore game randomly picks 3 scores and then combines them into a final score. All 4 scores are returned
+ * by the {@link #getScores()} method.</p>
  *
- * As implemented, the first score ranges from 0 to 9,999. The second score, from 0 to 999, the third score, also
- * from 0 to 999.
+ * <p>As implemented, the first score ranges from 0 to 9,999. The second score, from 0 to 999, the third score, also
+ * from 0 to 999.</p>
  *
- * The final score is made up of the first score, for the millions, the second score, for the thousands, and the
- * third score, for the hundreds.
+ * <p>The final score is made up of the first score, for the millions, the second score, for the thousands, and the
+ * third score, for the hundreds.</p>
  */
 public class TriScore implements Game {
     private Long[] score;

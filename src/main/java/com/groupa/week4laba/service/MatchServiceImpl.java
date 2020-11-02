@@ -5,10 +5,18 @@ import com.groupa.week4laba.repo.MatchRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * A simple CRUD implementation of the {@link MatchService} interface. Basically, just a wrapper around the
+ * {@link MatchRepo}.
+ */
 @Service
 public class MatchServiceImpl implements MatchService {
     final MatchRepo matchRepo;
 
+    /**
+     * An autowired constructor for Spring Boot to pass the implemented {@link MatchRepo}.
+     * @param matchRepo an implementation of the {@link MatchRepo} repository
+     */
     @Autowired
     public MatchServiceImpl(MatchRepo matchRepo) {
         this.matchRepo = matchRepo;
