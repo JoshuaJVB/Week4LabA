@@ -1,6 +1,9 @@
 package com.groupa.week4laba.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +14,10 @@ public class Leaderboard {
     @GeneratedValue
     private Long id;
 
+    // @JsonIgnore fixes infinite recursion StackOverflowError when 
+    // making call to http://localhost:8080/admin/get/leaderboard/all
+    // Not sure why this happens. I will read more about this problem (Tye)
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "leaderboard", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Match> matches;
 
