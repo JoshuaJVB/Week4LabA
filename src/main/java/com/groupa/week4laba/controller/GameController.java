@@ -17,11 +17,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /***********************************************************
  * <p>{@code GameController} is responsible for mutating data on the
  * server and giving a proper response to the user based on
- * user input</p>
+ * user input
  *
  * @author  Tye Porter (github.com/tyeporter)
  * @version 0.1
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  ***********************************************************/
 
 @Controller
+@RequestMapping("")
 public class GameController {
 
     // =========================================================
@@ -65,14 +67,14 @@ public class GameController {
 
 
     // =========================================================
-    // GET
+    // GET Mappings
     // =========================================================
 
     /***********************************************************
-     * <p>GET endpoint that corresponds to the login.html view.</p>
+     * GET endpoint that corresponds to the login.html view
      * 
      * <p>This method is responsible for passing a new {@code User}
-     * to the {@code /login} Thymeleaf view model</p>
+     * to the {@code /login} Thymeleaf view model.
      *
      * @param model The Thymeleaf view model for the 
      * {@code /login} endpoint
@@ -86,11 +88,10 @@ public class GameController {
     }
 
     /***********************************************************
-     * <p>GET endpoint that corresponds to the pick_game.html view.</p>
+     * GET endpoint that corresponds to the pick_game.html view
      * 
      * <p>This method is responsible for passing the logged in
-     * {@code User} 
-     * to the {@code /login} Thymeleaf view model</p>
+     * {@code User} to the {@code /login} Thymeleaf view model.
      *
      * @param model The Thymeleaf view model for the 
      * {@code /login} endpoint
@@ -105,11 +106,11 @@ public class GameController {
     }
 
     /***********************************************************
-     * <p>GET endpoint that corresponds to the play.html view.</p>
+     * GET endpoint that corresponds to the play.html view
      * 
      * <p>This method is responsible for passing the {@code Game}
      * and the {@code Leaderboard} to the {@code /play} 
-     * Thymeleaf view model</p>
+     * Thymeleaf view model.
      *
      * @param model The Thymeleaf view model for the 
      * {@code /play} endpoint
@@ -125,12 +126,12 @@ public class GameController {
     }
 
     /***********************************************************
-     * <p>GET endpoint that corresponds to the results.html view.</p>
+     * GET endpoint that corresponds to the results.html view.
      * 
      * <p>This method is responsible for passing the updated
      * {@code Game} with {@code User} score
      * and the updated {@code Leaderboard} to the 
-     * {@code /results} Thymeleaf view model</p>
+     * {@code /results} Thymeleaf view model.
      *
      * @param model The Thymeleaf view model for the 
      * {@code /results} endpoint
@@ -144,22 +145,22 @@ public class GameController {
         model.addAttribute("actions", Arrays.asList("Play Again", "Choose Game", "Log Out"));
         return "results_page";
     }
-
+    
 
     // =========================================================
-    // POST
+    // POST Mappings
     // =========================================================
 
     /***********************************************************
-     * <p>POST endpoint that corresponds to the login view's form
-     * submission.</p>
+     * POST endpoint that corresponds to the login view's form
+     * submission.
      * 
      * <p>This method takes in a {@code User} and checks to see
      * if that {@code User} is already in the database. If not,
-     * a new {@code User} will be created.</p>
+     * a new {@code User} will be created.
      * 
-     * <p>The  Thymeleaf view for the {@code /pickGame} endpoint will
-     * be presented to the {@code User}</p>
+     * <p>The Thymeleaf view for the {@code /pickGame} endpoint will
+     * be presented to the {@code User}.
      *
      * @param user The Thymeleaf model attribute that corresponds 
      * to the {@code User} that logged in
@@ -175,16 +176,16 @@ public class GameController {
     }
 
     /***********************************************************
-     * <p>POST endpoint that corresponds to the pick game view's
-     * form submission.</p>
+     * POST endpoint that corresponds to the pick game view's
+     * form submission
      * 
      * <p>This method takes in a {@code String} value that
      * represents the type of game the {@code User} wants to 
      * play. To track the {@code User}'s game choice,
-     * the {@code String} is stored locally.</p>
+     * the {@code String} is stored locally.
      * 
      * <p>It will then redirect the user to the {@code /play}
-     * endpoint</p>
+     * endpoint.
      *
      * @param game The Thymeleaf model attribute that corresponds 
      * to the games selected by the user
@@ -198,17 +199,18 @@ public class GameController {
     }
 
     /***********************************************************
-     * <p>POST endpoint that corresponds to the play view's
-     * form submission.</p>
+     * POST endpoint that corresponds to the play view's
+     * form submission
      * 
      * <p>This method is responsible for creating new {@code Game}
      * object, playing the {@code Game}, creating a new 
      * {@code Match} object based off of the {@code User}
      * and the {@code User}'s score, and updating the 
-     * {@code Leaderboard} based off of the {@code Match}.</p>
+     * {@code Leaderboard} based off of the {@code Match}.
      * 
      * <p>It will redirect the user to the {@code /results}
-     * endpoint</p>
+     * endpoint.
+     * 
      * @return A redirect to the /results GET mapping
      ***********************************************************/
     @PostMapping("/play")
@@ -245,13 +247,15 @@ public class GameController {
     }
 
     /***********************************************************
-     * <p>POST endpoint that corresponds to the results view's
-     * form submission.</p>
+     * POST endpoint that corresponds to the results view's
+     * form submission.
      * 
      * <p>This method is simply redirects the {@code User}
      * to the endpoint that corresponds to the submit 
-     * button that they've chose.</p>
-     * @param endGameChoice One of "PlayAgain", "ChooseGame", or "Logout"
+     * button that they've chose.
+     * 
+     * @param endGameChoice One of "PlayAgain", "ChooseGame", 
+     * or "Logout"
      * @return A redirect to the proper view
      ***********************************************************/
     @PostMapping("/results")
