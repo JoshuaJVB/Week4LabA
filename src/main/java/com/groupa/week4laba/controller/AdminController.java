@@ -106,7 +106,7 @@ public class AdminController {
     }
 
     // =========================================================
-    // GET Delete Mapping
+    // DELETE Admin Mapping
     // =========================================================
 
     @DeleteMapping("/delete/user/{byId}")
