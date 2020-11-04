@@ -1,11 +1,20 @@
+             html{
+                height: 100%;
+             }
+
              body {
                             text-align: center;
                             background: url('/images/bg.png');
                             background-repeat: no repeat;
                             background-size: auto;
                             font-family: 'Source Code Pro', monospace;
+                            height: 100%;
                         }
 
+             .container {
+                height: 100%;
+
+             }
              .title {
                 color: #F8E201;
              }

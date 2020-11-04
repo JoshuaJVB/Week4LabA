@@ -36,7 +36,8 @@
                 <tbody>
                     <th:block th:each="match : ${leaderboard}">
                         <tr>
-                            <td>1</td> //need to do operation that finds their new index in the leaderboard and adds one to display the rank
+                            <td>1</td>
+                            <!-- need to do operation that finds their new index in the leaderboard and adds one to display the rank-->
                             <td th:text="${match.getUser().getUsername()}">...</td>
                             <td th:text="${match.getScore()}">...</td>
                             <td th:text="${match.getUser().getLevel()}">...</td>
