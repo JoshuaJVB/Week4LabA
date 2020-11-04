@@ -61,8 +61,8 @@ public class AdminControllerTest {
         );
 
         String expected = "User (Tye) saved...";
-//        assertEquals(200, response.getStatusCode().value());
-//        assertEquals(expected, response.getBody());
+        assertEquals(200, response.getStatusCode().value());
+        assertEquals(expected, response.getBody());
     }
 
     @Test
@@ -126,7 +126,7 @@ public class AdminControllerTest {
         catch (ParseException e) { jsonObject = new JSONObject(); }
 
         assertEquals(200, response.getStatusCode().value());
-//        assertEquals("Tye", jsonObject.get("username"));
+        assertEquals("Tye", jsonObject.get("username"));
     }
 
     @Test
@@ -151,8 +151,8 @@ public class AdminControllerTest {
         try { jsonObject = (JSONObject)parser.parse(response.getBody()); }
         catch (ParseException e) { jsonObject = new JSONObject(); }
 
-//        assertEquals(200, response.getStatusCode().value());
-//        assertEquals("SnakeEyes", jsonObject.get("clazz"));
+        assertEquals(200, response.getStatusCode().value());
+        assertEquals("SnakeEyes", jsonObject.get("clazz"));
     }
 
     @Test
