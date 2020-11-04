@@ -35,7 +35,7 @@
                 <tbody>
                     <th:block th:each="match : ${leaderboard}">
                         <tr>
-                            <td>1</td>
+                            <td th:text="${#ids.seq('')}">...</td>
                             <td th:text="${match.getUser().getUsername()}">...</td>
                             <td th:text="${match.getScore()}">...</td>
                             <td th:text="${match.getUser().getLevel()}">...</td>
