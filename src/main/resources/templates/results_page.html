@@ -5,36 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Results</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-        <style type="text/css">
-            body {
-                font-family: sans-serif;
-                text-align: center;
-            }
-
-            .box {
-                background-color: #1d1d1d;
-                color: #fff;
-            }
-
-            table {
-                margin: 0 auto;
-            }
-
-            form { 
-                max-width: 50%; 
-                margin: 0 auto;
-            }
-
-            .bold { font-weight: bold !important; }
-            .underline { text-decoration: underline !important; }
-        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
         <div class="container is-max-desktop">
             <!-- Page Heading -->
             <h1 class="title">Game Results</h1>
 
-            <!-- Information about Functionality -->
+        <!--             Information about Functionality -->
             <div class="box">
                 <p>Results are displayed</p>
                 <p>A choice of PlayAgain, OtherGame, or SignOut is given</p>
@@ -44,7 +23,7 @@
             </div>
 
             <!-- Leaderboard -->
-            <h2 class="subtitle">Leaderboard</h2>
+            <h2 class="subtitle leader">Leaderboard</h2>
             <table class="table">
                 <thead>
                 <tr>
@@ -57,7 +36,7 @@
                 <tbody>
                     <th:block th:each="match : ${leaderboard}">
                         <tr>
-                            <td>1</td>
+                            <td>1</td> //need to do operation that finds their new index in the leaderboard and adds one to display the rank
                             <td th:text="${match.getUser().getUsername()}">...</td>
                             <td th:text="${match.getScore()}">...</td>
                             <td th:text="${match.getUser().getLevel()}">...</td>
@@ -67,8 +46,8 @@
             </table>
 
             <!-- Game Results -->
-            <h2 class="subtitle is-2 bold">Congratulations</h2>
-            <h3 class="subtitle is-3">Your score is <span class="bold underline" th:text="${userScore}"></span>!</h3>
+            <h2 class="subtitle is-2 bold white-text">Congratulations</h2>
+            <h3 class="subtitle is-3 white-text">Your score is <span class="bold underline" th:text="${userScore}"></span>!</h3>
 
             <!-- User Choices for End of Game -->
             <form th:action="@{/results}" method="post" >

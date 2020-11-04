@@ -5,34 +5,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Pick a Game</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-		<style type="text/css">
-			body {
-				font-family: sans-serif;
-				text-align: center;
-			}
-
-			.box {
-				background-color: #1d1d1d;
-				color: #fff;
-			}
-
-			form { 
-				max-width: 50%; 
-				margin: 5px auto 0;
-			}
-		</style>
-	</head>
+		<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 	<body>
 		<div class="container is-max-desktop">
 			<!-- Page Heading -->
 			<h1 class="title">Hello, <span th:text="${user.username}"></span>! Pick a Game</h1>
 
 			<!-- Inforamtion about Implementation -->
-			<div class="box">
-				<p>After choosing a game, with a POST method on URL /pickGame</p>
-				<p>Which redirects to URL /play on file play.html</p>
-				<p>Very crude demo, below:</p>
-			</div>
+<!--			<div class="box">-->
+<!--				<p>After choosing a game, with a POST method on URL /pickGame</p>-->
+<!--				<p>Which redirects to URL /play on file play.html</p>-->
+<!--				<p>Very crude demo, below:</p>-->
+<!--			</div>-->
 		
 			<!-- User Choices for Game -->
 			<form th:action="@{/pickGame}" method="post">

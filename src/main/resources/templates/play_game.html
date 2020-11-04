@@ -5,26 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Play</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-        <style type="text/css">
-            body {
-                font-family: sans-serif;
-                text-align: center;
-            }
-
-            .box {
-                background-color: #1d1d1d;
-                color: #fff;
-            }
-
-            table {
-                margin: 0 auto;
-            }
-
-            form { 
-                max-width: 50%; 
-                margin: 0 auto;
-            }
-        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
         <div class="container is-max-desktop">
@@ -32,15 +14,15 @@
             <h1 class="title" th:text="${game}"></h1>
 
             <!-- Information about Implementation -->
-            <div class="box">
-                <p>Here, the leaderboard is displayed, in a loop.</p>
-                <p>Then there is a button that allows the game to be played.</p>
-                <p>Which is a POST to /play giving the file results.html.</p>
-                <p>Demo below:</p>
-            </div>
+<!--            <div class="box">-->
+<!--                <p>Here, the leaderboard is displayed, in a loop.</p>-->
+<!--                <p>Then there is a button that allows the game to be played.</p>-->
+<!--                <p>Which is a POST to /play giving the file results.html.</p>-->
+<!--                <p>Demo below:</p>-->
+<!--            </div>-->
             
             <!-- Leaderboard -->
-            <h2 class="subtitle">Leaderboard</h2>
+            <h2 class="subtitle leader">Leaderboard</h2>
             <table class="table">
                 <thead>
                     <tr>
