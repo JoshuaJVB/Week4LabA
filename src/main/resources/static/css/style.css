@@ -1,0 +1,55 @@
+             body {
+                            text-align: center;
+                            background: url('/images/bg.png');
+                            background-repeat: no repeat;
+                            background-size: auto;
+                            font-family: 'Source Code Pro', monospace;
+                        }
+
+             .title {
+                color: #F8E201;
+             }
+
+            .box {
+                background-color: #1d1d1d;
+                color: #fff;
+            }
+
+            form {
+                max-width: 50%;
+                margin: 0 auto;
+            }
+
+            .input {
+                border: 5px solid #black;
+            }
+
+            .button {
+                display: inline-block;
+                margin: 5px;
+                background-color: #1d1d1d;
+                color: #F8E201;
+                border: 3px solid #black;
+                font-weight: bold;
+            }
+
+            .button:hover{
+                background-color: #024BFD;
+                color: #fff;
+            }
+
+            table {
+                margin: 0 auto;
+            }
+
+            .bold {font-weight: bold !important;}
+            .underline {
+                text-decoration: underline !important;
+                color: #F8E201;
+            }
+            .leader{
+                color: #024BFD;
+            }
+            .white-text {
+                color: #fff;
+            }
