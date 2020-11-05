@@ -10,11 +10,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * A CRUD implementation of the {@link LeaderboardService} interface.
+ * @Author Ronald Chaplin
+ *
+ */
 @Service
 public class LeaderboardServiceImpl implements LeaderboardService {
 
     final LeaderboardRepo leaderboardRepo;
 
+    /**
+     * Autowired constructor for Spring Boot to pass the implemented {@link LeaderboardRepo}
+     * @param leaderboardRepo an implementation of the {@link LeaderboardRepo} repository
+     */
     @Autowired
     public LeaderboardServiceImpl(LeaderboardRepo leaderboardRepo){
         this.leaderboardRepo = leaderboardRepo;
