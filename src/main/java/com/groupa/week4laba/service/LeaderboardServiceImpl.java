@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * A CRUD implementation of the {@link LeaderboardService} interface.
- * @Author Ronald Chaplin
+ * @author Ronald Chaplin
  *
  */
 @Service

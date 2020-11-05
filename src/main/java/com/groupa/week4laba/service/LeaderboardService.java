@@ -7,13 +7,13 @@ import java.util.List;
 
 /**
  * The service interface to the {@link Leaderboard} model.
- * @Author Ronald Chaplin
+ * @author  Ronald Chaplin
  */
 public interface LeaderboardService {
     /**
      * Selects the leaderboard based on the clazz provided.
      * If a leaderboard does not exist for that clazz it is created
-     * @param clazz
+     * @param clazz used to select the {@link Leaderboard}
      * @return A {@link Leaderboard} either created or selected based off the clazz
      */
     Leaderboard getLeaderboard(String clazz);
