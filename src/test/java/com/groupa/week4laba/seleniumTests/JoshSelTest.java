@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -49,9 +48,72 @@ public class JoshSelTest {
     void getToSnakeEyes () throws InterruptedException {
         driver.findElement(By.xpath("/html/body/div/form/input")).sendKeys("TestUser");
         driver.findElement(By.xpath("/html/body/div/form/button")).click();
-        Thread.sleep(1000);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/form/span[1]/button")));
         driver.findElement(By.xpath("/html/body/div/form/span[1]/button")).click();
         Thread.sleep(3000);
-        System.out.println(driver.getTitle());
+        assertEquals("Play",driver.getTitle());
+    }
+
+    @Test
+    void getToTriScore() throws InterruptedException {
+        driver.findElement(By.xpath("/html/body/div/form/input")).sendKeys("TestUser");
+        driver.findElement(By.xpath("/html/body/div/form/button")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/form/span[2]/button")));
+        driver.findElement(By.xpath("/html/body/div/form/span[2]/button")).click();
+        Thread.sleep(3000);
+        assertEquals("Play",driver.getTitle());
+    }
+
+    @Test
+    void getToRandom() throws InterruptedException {
+        driver.findElement(By.xpath("/html/body/div/form/input")).sendKeys("TestUser");
+        driver.findElement(By.xpath("/html/body/div/form/button")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/form/span[3]/button")));
+        driver.findElement(By.xpath("/html/body/div/form/span[3]/button")).click();
+        Thread.sleep(3000);
+        assertEquals("Play",driver.getTitle());
+    }
+
+    @Test
+    void playSnakeEyes() throws InterruptedException {
+        driver.findElement(By.xpath("/html/body/div/form/input")).sendKeys("TestUser");
+        driver.findElement(By.xpath("/html/body/div/form/button")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/form/span[1]/button")));
+        driver.findElement(By.xpath("/html/body/div/form/span[1]/button")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/form/button")));
+        driver.findElement(By.xpath("/html/body/div/form/button")).click();
+        Thread.sleep(3000);
+        assertEquals("Game Results", driver.findElement(By.xpath("/html/body/div/h1")).getText());
+    }
+
+    @Test
+    void playTriScore() throws InterruptedException {
+        driver.findElement(By.xpath("/html/body/div/form/input")).sendKeys("TestUser");
+        driver.findElement(By.xpath("/html/body/div/form/button")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/form/span[2]/button")));
+        driver.findElement(By.xpath("/html/body/div/form/span[2]/button")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/form/button")));
+        driver.findElement(By.xpath("/html/body/div/form/button")).click();
+        Thread.sleep(3000);
+        assertEquals("Game Results", driver.findElement(By.xpath("/html/body/div/h1")).getText());
+    }
+
+    @Test
+    void playRandom() throws InterruptedException {
+        driver.findElement(By.xpath("/html/body/div/form/input")).sendKeys("TestUser");
+        driver.findElement(By.xpath("/html/body/div/form/button")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/form/span[3]/button")));
+        driver.findElement(By.xpath("/html/body/div/form/span[3]/button")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/form/button")));
+        driver.findElement(By.xpath("/html/body/div/form/button")).click();
+        Thread.sleep(3000);
+        assertEquals("Game Results", driver.findElement(By.xpath("/html/body/div/h1")).getText());
     }
 }
