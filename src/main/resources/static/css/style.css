@@ -20,6 +20,10 @@
                 color: #F8E201;
              }
 
+             h2.subtitle.is-2 {
+                 font-size: 2.25rem;
+             }
+
             .box {
                 background-color: #1d1d1d;
                 color: #fff;
