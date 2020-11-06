@@ -8,21 +8,49 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
+import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringJUnitWebConfig
 public class JoshSelTest {
 
     private WebDriver driver;
 
+    public static Properties readPropertiesFile(String fileName) throws IOException {
+        FileInputStream fis = null;
+        Properties prop = null;
+        try {
+            fis = new FileInputStream(fileName);
+            prop = new Properties();
+            prop.load(fis);
+        } catch(FileNotFoundException fnfe) {
+            fnfe.printStackTrace();
+        } catch(IOException ioe) {
+            ioe.printStackTrace();
+        } finally {
+            fis.close();
+        }
+        return prop;
+    }
+
     @BeforeEach
-    void setUp(){
-        System.setProperty("webdriver.chrome.driver", "C://Users/tremu/selenium/chromedriver.exe");
+    void setUp() throws IOException {
+        Properties properties = readPropertiesFile("src/test/resources/selenium.properties");
+        System.out.println(properties.getProperty("chrome.driver"));
+        System.setProperty("webdriver.chrome.driver", properties.getProperty("chrome.driver"));
         driver = new ChromeDriver();
 
-        driver.navigate().to("http://localhost:8080");
+        driver.navigate().to("https://week4laba.herokuapp.com");
     }
 
     @AfterEach
