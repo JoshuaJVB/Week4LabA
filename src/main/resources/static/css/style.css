@@ -5,7 +5,7 @@
              body {
                             text-align: center;
                             background: url('/images/bg.png');
-                            background-repeat: no repeat;
+                            background-repeat: no-repeat;
                             background-size: auto;
                             box-sizing: border-box;
                             font-family: 'Source Code Pro', monospace;
@@ -35,7 +35,7 @@
             }
 
             .input {
-                border: 5px solid #black;
+                border: 5px solid black;
             }
 
             .button {
@@ -43,7 +43,7 @@
                 margin: 5px;
                 background-color: #1d1d1d;
                 color: #F8E201;
-                border: 3px solid #black;
+                border: 3px solid black;
                 font-weight: bold;
             }
 
