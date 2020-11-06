@@ -7,8 +7,9 @@
                             background: url('/images/bg.png');
                             background-repeat: no repeat;
                             background-size: auto;
+                            box-sizing: border-box;
                             font-family: 'Source Code Pro', monospace;
-                            height: 100%;
+                            padding-bottom: 2rem;
                         }
 
              .container {
