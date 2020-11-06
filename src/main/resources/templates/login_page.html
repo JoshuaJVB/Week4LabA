@@ -23,7 +23,7 @@
 
             <!-- Username Input Form -->
             <form th:action="@{/login}" th:object="${user}" method="post" >
-                <input class="input" type="text" th:field="*{username}" placeholder="Username" /><br>
+                <input class="input" type="text" th:field="*{username}" placeholder="Username" autofocus/><br>
                 <button class="button" type="submit" >Submit</button>
             </form>
         </div>
