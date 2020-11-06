@@ -17,6 +17,9 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.MethodMode;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = Week4LabAApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -103,6 +106,7 @@ public class AdminControllerTest {
     // GET Tests
     // =========================================================
 
+    @DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
     @Test
     public void testGetUser() {
         User user = new User("Tye");
@@ -129,6 +133,7 @@ public class AdminControllerTest {
         assertEquals("Tye", jsonObject.get("username"));
     }
 
+    @DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
     @Test
     public void testGetLeaderboard() {
         Leaderboard leaderboard = new Leaderboard("SnakeEyes");
@@ -155,6 +160,7 @@ public class AdminControllerTest {
         assertEquals("SnakeEyes", jsonObject.get("clazz"));
     }
 
+    @DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
     @Test
     public void testGetMatch() {
         Match match = new Match();
