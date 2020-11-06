@@ -40,5 +40,5 @@ build/
 .DS_Store
 
 ## Project ##
-application.properties
+*.properties
 doc/
